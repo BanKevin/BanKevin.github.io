@@ -1,8 +1,25 @@
-<p>Hello 大家好</p>
-<p>我是霸都丶傲天，这是我的个人网站。 </p>
-<p>很高兴你来到这里, 你可以在以下的网站找到我</p>
+---
+layout: home-page
+---
+{% include calculate_relative_base.html %}
 
-<ul>
-  <li> <a href="https://www.zhihu.com/people/AJLoveChina">知乎</a> </li>
-  <li> <a href="http://hejie.nigeerhuo.com">我的博客(已经不更细了,现在在知乎写文章)</a> </li>
-</ul>
+<ol class="post-card-box clearfix">
+  {% for post in paginator.posts %}
+  {% include remove_double_slash.html %}
+  <li>
+    <div class="post-card">
+      <a href="{{ post_url }}" title="{{ post.title }}" class="post-card-image" style="background: url('{{ relativebase }}assets/img/{{ post.img }}') center no-repeat; background-size: cover;">
+      </a>
+      <div class="post-card-body">
+        <p class="post-card-title-and-meta">
+          
+          <a href="{{ post_url }}" class="post-card-link">
+          {{ post.title }}
+          </a>
+          {% include post_meta.html type="post-card-meta" date="none" %}
+        </p>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ol>
